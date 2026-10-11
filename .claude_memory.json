@@ -1,0 +1,269 @@
+{
+  "projectName": "sitoStelle",
+  "projectPath": "C:\\Users\\pietr\\OneDrive\\Desktop\\sitoStelle",
+  "updatedAt": "2026-10-11T13:25:10.760Z",
+  "nodes": [
+    {
+      "id": "proj_step_1791723951183",
+      "scope": "project",
+      "type": "step",
+      "label": "Passo: The user wants me to create a simple web",
+      "value": "Eseguito: The user wants me to create a simple website for viewing stars in the sky, with a photo that tells them what constellation they're looking at. They want me to start with a minimal skeleton (PASSO 1 di 3).. File coinvolti: index.html, style.css, app.js",
+      "tags": [
+        "passaggio",
+        "sviluppo",
+        "progresso"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_code_index_html",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_style_css",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_app_js",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_node_root",
+          "label": "avanzamento",
+          "strength": 0.7
+        }
+      ],
+      "createdAt": "2026-10-11T13:05:51.183Z",
+      "updatedAt": "2026-10-11T13:05:51.183Z"
+    },
+    {
+      "id": "proj_node_root",
+      "scope": "project",
+      "type": "data",
+      "label": "Progetto: sitoStelle",
+      "value": "Cartella radice attiva: C:\\Users\\pietr\\OneDrive\\Desktop\\sitoStelle",
+      "tags": [
+        "progetto",
+        "root"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_var_cwd",
+          "label": "percorso",
+          "strength": 1
+        },
+        {
+          "targetId": "proj_code_index_html",
+          "label": "include",
+          "strength": 0.8
+        },
+        {
+          "targetId": "proj_code_style_css",
+          "label": "include",
+          "strength": 0.8
+        },
+        {
+          "targetId": "proj_code_app_js",
+          "label": "include",
+          "strength": 0.8
+        }
+      ]
+    },
+    {
+      "id": "proj_node_var_cwd",
+      "scope": "project",
+      "type": "variable",
+      "label": "CWD: sitoStelle",
+      "value": "C:\\Users\\pietr\\OneDrive\\Desktop\\sitoStelle",
+      "tags": [
+        "variabile",
+        "path"
+      ],
+      "synapses": []
+    },
+    {
+      "id": "proj_node_step_init",
+      "scope": "project",
+      "type": "step",
+      "label": "Sessione di Lavoro Inizializzata",
+      "value": "Sessione pronta in C:\\Users\\pietr\\OneDrive\\Desktop\\sitoStelle. Pronto per generare codice, gestire passaggi e dati.",
+      "tags": [
+        "passaggio",
+        "avvio"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_root",
+          "label": "associato a",
+          "strength": 0.9
+        }
+      ]
+    },
+    {
+      "id": "proj_code_index_html",
+      "scope": "project",
+      "type": "data",
+      "label": "index.html",
+      "value": "[index.html] Interfaccia HTML: 34 righe. Campi/ID: camera-section, camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, controls, start-camera. Ultima modifica: 15:05:51",
+      "tags": [
+        "codice",
+        "html",
+        "progetto"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_root",
+          "label": "script di",
+          "strength": 0.9
+        }
+      ],
+      "createdAt": "2026-10-11T13:04:20.535Z",
+      "updatedAt": "2026-10-11T13:05:51.182Z"
+    },
+    {
+      "id": "scan_mappa_del_codice",
+      "scope": "project",
+      "type": "data",
+      "label": "Mappa del codice",
+      "value": "- app.js (js, 59 righe) -> funzioni: getRandomConstellation, resizeCanvas, startCamera, capturePhoto | variabili: video, canvas, ctx, constellationInfo, constellationName, constellationDescription, startCameraBtn, capturePhotoBtn, stream, constellations | usa id: camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, start-camera, capture-photo\n- index.html (html, 34 righe) -> id: camera-section, camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, controls, start-camera, capture-photo\n- style.css (css, 116 righe)\nCollegamenti fra file:\n  app.js --[usa #camera-video]--> index.html\n  app.js --[usa #overlay-canvas]--> index.html\n  app.js --[usa #constellation-info]--> index.html\n  app.js --[usa #constellation-name]--> index.html\n  app.js --[usa #constellation-description]--> index.html\n  app.js --[usa #start-camera]--> index.html\n  app.js --[usa #capture-photo]--> index.html\n  index.html --[include]--> style.css\n  index.html --[include]--> app.js",
+      "tags": [
+        "analisi",
+        "mappa"
+      ],
+      "synapses": [],
+      "updatedAt": "2026-10-11T13:25:10.758Z"
+    },
+    {
+      "id": "proj_code_style_css",
+      "scope": "project",
+      "type": "data",
+      "label": "style.css",
+      "value": "[style.css] Fogli di stile CSS: 116 righe. Ultima modifica: 15:05:51",
+      "tags": [
+        "codice",
+        "css",
+        "progetto"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_root",
+          "label": "script di",
+          "strength": 0.9
+        }
+      ],
+      "createdAt": "2026-10-11T13:05:02.906Z",
+      "updatedAt": "2026-10-11T13:05:51.183Z"
+    },
+    {
+      "id": "proj_code_app_js",
+      "scope": "project",
+      "type": "data",
+      "label": "app.js",
+      "value": "[app.js] Script JavaScript/TypeScript: 59 righe. Metodi (4): getRandomConstellation, resizeCanvas, startCamera, capturePhoto. Ultima modifica: 15:05:51",
+      "tags": [
+        "codice",
+        "js",
+        "progetto",
+        "funzioni"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_root",
+          "label": "script di",
+          "strength": 0.9
+        }
+      ],
+      "createdAt": "2026-10-11T13:05:32.847Z",
+      "updatedAt": "2026-10-11T13:05:51.183Z"
+    },
+    {
+      "id": "mappa_app_js",
+      "scope": "project",
+      "type": "data",
+      "label": "app.js",
+      "value": "js, 59 righe. Funzioni: getRandomConstellation, resizeCanvas, startCamera, capturePhoto. Variabili: video, canvas, ctx, constellationInfo, constellationName, constellationDescription, startCameraBtn, capturePhotoBtn, stream, constellations. Id usati: camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, start-camera, capture-photo",
+      "tags": [
+        "mappa-codice",
+        "js"
+      ],
+      "synapses": [
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #camera-video",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #overlay-canvas",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #constellation-info",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #constellation-name",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #constellation-description",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #start-camera",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #capture-photo",
+          "strength": 0.8
+        }
+      ],
+      "updatedAt": "2026-10-11T13:25:10.760Z"
+    },
+    {
+      "id": "mappa_index_html",
+      "scope": "project",
+      "type": "data",
+      "label": "index.html",
+      "value": "html, 34 righe. Id dichiarati: camera-section, camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, controls, start-camera, capture-photo",
+      "tags": [
+        "mappa-codice",
+        "html"
+      ],
+      "synapses": [
+        {
+          "targetId": "mappa_style_css",
+          "label": "include",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_app_js",
+          "label": "include",
+          "strength": 0.8
+        }
+      ],
+      "updatedAt": "2026-10-11T13:25:10.760Z"
+    },
+    {
+      "id": "mappa_style_css",
+      "scope": "project",
+      "type": "data",
+      "label": "style.css",
+      "value": "css, 116 righe. Nessun simbolo di primo livello.",
+      "tags": [
+        "mappa-codice",
+        "css"
+      ],
+      "synapses": [],
+      "updatedAt": "2026-10-11T13:25:10.760Z"
+    }
+  ]
+}
