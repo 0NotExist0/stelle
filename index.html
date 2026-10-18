@@ -18,6 +18,19 @@
     <div class="sky-container">
         <canvas id="sky-canvas"></canvas>
 
+        <!-- Mappa per selezione posizione (Google Maps, caricata dinamicamente) -->
+        <div id="map-container" class="map-container hidden">
+            <div id="map"></div>
+            <div class="map-bar">
+                <h3 id="map-title">Seleziona la tua posizione</h3>
+                <div class="map-actions">
+                    <button id="btn-use-gps" class="btn map-btn">📍 Usa GPS</button>
+                    <button id="btn-confirm-map" class="btn map-btn">✓ Conferma</button>
+                    <button id="btn-close-map" class="btn map-btn">✕ Chiudi</button>
+                </div>
+            </div>
+        </div>
+
         <header class="sky-header">
             <h1>🌌 Mappa Stellare</h1>
             <div id="sky-status">Calcolo posizione...</div>
@@ -25,6 +38,7 @@
 
         <div class="controls">
             <button id="btn-locate" class="btn">📍 La mia posizione</button>
+            <button id="btn-map" class="btn">🗺 Mappa</button>
             <button id="btn-night" class="btn">🌙 Notturna</button>
             <button id="btn-constellations" class="btn active">✨ Costellazioni</button>
             <button id="btn-now" class="btn">⏱ Ora attuale</button>

@@ -1,3 +1,5 @@
+﻿/* global google */
+let google;
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
@@ -14,6 +16,21 @@ const btnNight = document.getElementById('btn-night');
 const btnConstellations = document.getElementById('btn-constellations');
 const btnNow = document.getElementById('btn-now');
 const datetimeInput = document.getElementById('datetime');
+
+// --- Mappa (Google Maps, caricata dinamicamente) ---
+const btnMap = document.getElementById('btn-map');
+const mapContainer = document.getElementById('map-container');
+const mapEl = document.getElementById('map');
+const btnUseGps = document.getElementById('btn-use-gps');
+const btnConfirmMap = document.getElementById('btn-confirm-map');
+const btnCloseMap = document.getElementById('btn-close-map');
+const mapTitle = document.getElementById('map-title');
+
+// --- Stato mappa ---
+let map = null;
+let mapMarker = null;
+let mapLoaded = false;
+let mapApiKey = 'TUA_API_KEY_GOOGLE_MAPS'; // <-- inserisci qui la tua chiave Google Maps
 
 // --- Stato ---
 let lat = 41.9;
@@ -159,7 +176,7 @@ const stellaPerNome = {};
 for (const s of stelleUniche) stellaPerNome[s.nome] = s;
 
 // --- Variabili Three.js ---
-let renderer, scene, camera, controls, starSystem, constellationLines, raycaster, mouse;
+let renderer, scene, camera, controls, starSystem, constellationLines, ground, skybox, bgStars, raycaster, mouse;
 let compassNeedsUpdate = true;
 
 // --- Inizializzazione ---
@@ -191,6 +208,8 @@ function init() {
     mouse = new THREE.Vector2();
 
     // Costruisci oggetti celesti
+    buildGround();
+    buildSkybox();
     buildStars();
     buildConstellations();
     buildGrid();
@@ -228,7 +247,7 @@ function buildStars() {
         const c = new THREE.Color(s.colore);
         colors.push(c.r, c.g, c.b);
 
-        const size = Math.max(0.05, 0.3 - s.mag * 0.05); // stelle più luminose = più grandi
+        const size = Math.max(0.05, 0.3 - s.mag * 0.05); // stelle piÃ¹ luminose = piÃ¹ grandi
         sizes.push(size);
 
         starData.push({ nome: s.nome, mag: s.mag, cost: s.cost });
@@ -340,6 +359,70 @@ function buildGrid() {
 
     // Etichette cardinali (sprite di testo semplificate: usiamo CSS overlay per la bussola)
 }
+// --- Terreno (piano scuro sotto l'orizzonte) ---
+function buildGround() {
+    const geo = new THREE.PlaneGeometry(RADIUS * 2.5, RADIUS * 2.5, 64, 64);
+    geo.rotateX(-Math.PI / 2);
+    const positions = geo.attributes.position.array;
+    const colors = [];
+    const dark = new THREE.Color(0x0a0a14);
+    const mid = new THREE.Color(0x12121e);
+    for (let i = 0; i < positions.length / 3; i++) {
+        const x = positions[i * 3];
+        const z = positions[i * 3 + 2];
+        const c = (Math.floor(Math.abs(x) / 20) + Math.floor(Math.abs(z) / 20)) % 2 === 0 ? dark : mid;
+        colors.push(c.r, c.g, c.b);
+    }
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    const mat = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide, transparent: true, opacity: 0.9 });
+    ground = new THREE.Mesh(geo, mat);
+    ground.position.y = -RADIUS * 0.02;
+    scene.add(ground);
+}
+
+// --- Skybox (cielo stellato di fondo) ---
+function buildSkybox() {
+    const geo = new THREE.SphereGeometry(RADIUS * 4, 64, 64);
+    geo.scale(-1, 1, 1);
+    const positions = geo.attributes.position.array;
+    const colors = [];
+    const deep = new THREE.Color(0x020205);
+    const mid = new THREE.Color(0x050510);
+    for (let i = 0; i < positions.length / 3; i++) {
+        const y = positions[i * 3 + 1];
+        const t = (y / (RADIUS * 4) + 1) / 2;
+        const c = deep.clone().lerp(mid, t);
+        colors.push(c.r, c.g, c.b);
+    }
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    const mat = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide });
+    skybox = new THREE.Mesh(geo, mat);
+    skybox.name = 'skybox';
+    scene.add(skybox);
+
+    const starCount = 8000;
+    const starPos = [];
+    const starCol = [];
+    const starSize = [];
+    for (let i = 0; i < starCount; i++) {
+        const phi = Math.random() * Math.PI * 2;
+        const cost = Math.random() * 2 - 1;
+        const r = Math.sqrt(1 - cost * cost);
+        starPos.push(Math.cos(phi) * r * RADIUS * 3.9, cost * RADIUS * 3.9, Math.sin(phi) * r * RADIUS * 3.9);
+        const brightness = 0.3 + Math.random() * 0.7;
+        starCol.push(brightness, brightness, brightness);
+        starSize.push(0.03 + Math.random() * 0.08);
+    }
+    const starGeo = new THREE.BufferGeometry();
+    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+    starGeo.setAttribute('color', new THREE.Float32BufferAttribute(starCol, 3));
+    starGeo.setAttribute('size', new THREE.Float32BufferAttribute(starSize, 1));
+    const starMat = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, sizeAttenuation: false });
+    bgStars = new THREE.Points(starGeo, starMat);
+    bgStars.name = 'bgStars';
+    scene.add(bgStars);
+}
+
 
 // --- Conversione equatoriale -> vettore 3D sulla sfera celeste ---
 function equatorialToVector3(raDeg, decDeg, latDeg, lonDeg, date) {
@@ -422,7 +505,7 @@ function updateSky() {
     }
 
     // Aggiorna info posizione
-    infoPos.textContent = `Lat: ${lat.toFixed(2)}°  Lon: ${lon.toFixed(2)}°  Ora: ${now.toLocaleTimeString('it-IT')}`;
+    infoPos.textContent = `Lat: ${lat.toFixed(2)}Â°  Lon: ${lon.toFixed(2)}Â°  Ora: ${now.toLocaleTimeString('it-IT')}`;
 
     // Aggiorna bussola (indica nord approssimativo basato su azimut 0)
     compassEl.textContent = 'N';
@@ -452,8 +535,8 @@ function selectStar(nome) {
     selectedObject = s;
     infoPanel.classList.remove('hidden');
     infoName.textContent = s.nome;
-    infoDetail.textContent = `Costellazione: ${s.cost}  •  Magnitudine: ${s.mag.toFixed(2)}`;
-    infoPos.textContent = `Lat: ${lat.toFixed(2)}°  Lon: ${lon.toFixed(2)}°`;
+    infoDetail.textContent = `Costellazione: ${s.cost}  â€¢  Magnitudine: ${s.mag.toFixed(2)}`;
+    infoPos.textContent = `Lat: ${lat.toFixed(2)}Â°  Lon: ${lon.toFixed(2)}Â°`;
 }
 
 function deselectStar() {
@@ -490,6 +573,87 @@ function getLocation() {
             updateSky();
         }
     }, 1500);
+}
+
+// --- Mappa Google Maps: caricamento dinamico ---
+function loadMapApi() {
+    if (mapLoaded || window.google) {
+        initMap();
+        return;
+    }
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${mapApiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+        mapLoaded = true;
+        initMap();
+    };
+    script.onerror = () => {
+        statusEl.textContent = 'Mappa non disponibile (inserisci una chiave Google Maps valida)';
+        mapTitle.textContent = 'Mappa non disponibile â€” usa GPS o inserisci coordinate';
+    };
+    document.head.appendChild(script);
+}
+
+function initMap() {
+    if (!window.google || !window.google.maps) return;
+    const center = { lat, lng: lon };
+    map = new google.maps.Map(mapEl, {
+        center,
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+            { elementType: 'geometry', stylers: [{ color: '#1a1a2e' }] },
+            { elementType: 'labels.text.fill', stylers: [{ color: '#9aa0b2' }] },
+            { elementType: 'labels.text.stroke', stylers: [{ color: '#050510' }] },
+            { featureType: 'administrative', elementType: 'geometry', stylers: [{ color: '#2a2a4a' }] },
+            { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#2a2a4a' }] },
+            { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#3a3a5a' }] },
+            { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#9aa0b2' }] },
+            { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0f1a2a' }] }
+        ]
+    });
+
+    mapMarker = new google.maps.Marker({
+        position: center,
+        map,
+        draggable: true,
+        title: 'Posizione osservatorio'
+    });
+
+    map.addListener('click', (e) => {
+        mapMarker.setPosition(e.latLng);
+    });
+
+    mapMarker.addListener('dragend', () => {
+        const pos = mapMarker.getPosition();
+        mapTitle.textContent = `Posizione: ${pos.lat().toFixed(4)}, ${pos.lng().toFixed(4)}`;
+    });
+
+    mapTitle.textContent = `Posizione: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+}
+
+function openMap() {
+    if (!mapLoaded && !window.google) {
+        loadMapApi();
+    }
+    mapContainer.classList.remove('hidden');
+    if (map) google.maps.event.trigger(map, 'resize');
+}
+
+function closeMap() {
+    mapContainer.classList.add('hidden');
+}
+
+function confirmMapPosition() {
+    if (!mapMarker) return;
+    const pos = mapMarker.getPosition();
+    lat = pos.lat();
+    lon = pos.lng();
+    statusEl.textContent = `Posizione: ${lat.toFixed(3)}, ${lon.toFixed(3)} (mappa)`;
+    updateSky();
+    closeMap();
 }
 
 // --- Controlli UI ---
@@ -540,6 +704,10 @@ function animate() {
 
 // --- Avvio ---
 btnLocate.addEventListener('click', getLocation);
+btnMap.addEventListener('click', openMap);
+btnUseGps.addEventListener('click', getLocation);
+btnConfirmMap.addEventListener('click', confirmMapPosition);
+btnCloseMap.addEventListener('click', closeMap);
 btnNight.addEventListener('click', () => {
     showNight = !showNight;
     btnNight.textContent = showNight ? '🌙 Notturna' : '☀️ Diurna';
@@ -547,6 +715,12 @@ btnNight.addEventListener('click', () => {
     const mat = starSystem.material;
     mat.opacity = showNight ? 1 : 0.15;
     mat.needsUpdate = true;
+    // Stelle di fondo visibili solo di notte
+    if (bgStars) bgStars.visible = showNight;
+    // Skybox visibile solo di notte
+    if (skybox) skybox.visible = showNight;
+    // Terreno sempre visibile, leggermente più scuro di giorno
+    if (ground) ground.material.opacity = showNight ? 0.9 : 0.5;
 });
 btnConstellations.addEventListener('click', () => {
     showConstellations = !showConstellations;

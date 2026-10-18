@@ -1,8 +1,49 @@
 {
   "projectName": "sitoStelle",
   "projectPath": "C:\\Users\\pietr\\OneDrive\\Desktop\\sitoStelle",
-  "updatedAt": "2026-10-18T15:52:10.003Z",
+  "updatedAt": "2026-10-18T16:31:58.222Z",
   "nodes": [
+    {
+      "id": "proj_step_1792340969692",
+      "scope": "project",
+      "type": "step",
+      "label": "Passo: I file `ground_skybox.js` e `block.txt` ",
+      "value": "Eseguito: I file `ground_skybox.js` e `block.txt` erano già stati rimossi (non esistono più su disco) — l'errore è solo una cache obsoleta del cervello. Non c'è nulla da ripristinare.. File coinvolti: app.js, app.js, index.html, style.css",
+      "tags": [
+        "passaggio",
+        "sviluppo",
+        "progresso"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_code_app_js",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_app_js",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_index_html",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_style_css",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_node_root",
+          "label": "avanzamento",
+          "strength": 0.7
+        }
+      ],
+      "createdAt": "2026-10-18T16:29:29.692Z",
+      "updatedAt": "2026-10-18T16:29:29.692Z"
+    },
     {
       "id": "proj_step_1792338713854",
       "scope": "project",
@@ -141,6 +182,11 @@
           "targetId": "proj_code_app_js",
           "label": "include",
           "strength": 0.8
+        },
+        {
+          "targetId": "proj_code_ground_skybox_js",
+          "label": "include",
+          "strength": 0.8
         }
       ]
     },
@@ -179,7 +225,7 @@
       "scope": "project",
       "type": "data",
       "label": "index.html",
-      "value": "[index.html] Interfaccia HTML: 49 righe. Campi/ID: sky-canvas, sky-status, btn-locate, btn-night, btn-constellations, btn-now, info-panel, info-name. Ultima modifica: 17:51:53",
+      "value": "[index.html] Interfaccia HTML: 63 righe. Campi/ID: sky-canvas, map-container, map, map-title, btn-use-gps, btn-confirm-map, btn-close-map, sky-status. Ultima modifica: 18:29:29",
       "tags": [
         "codice",
         "html",
@@ -193,27 +239,27 @@
         }
       ],
       "createdAt": "2026-10-11T13:04:20.535Z",
-      "updatedAt": "2026-10-18T15:51:53.854Z"
+      "updatedAt": "2026-10-18T16:29:29.692Z"
     },
     {
       "id": "scan_mappa_del_codice",
       "scope": "project",
       "type": "data",
       "label": "Mappa del codice",
-      "value": "- app.js (js, 563 righe) -> funzioni: init, buildStars, buildConstellations, buildGrid, equatorialToVector3, julianDay, greenwichMeanSiderealTime, updateSky, onCanvasClick, selectStar, deselectStar, getLocation | variabili: canvas, statusEl, infoPanel, infoName, infoDetail, infoPos, compassEl, btnLocate, btnNight, btnConstellations, btnNow, datetimeInput | usa id: sky-canvas, sky-status, info-panel, info-name, info-detail, info-pos, compass, btn-locate, btn-night, btn-constellations, btn-now, datetime\n- index.html (html, 49 righe) -> id: sky-canvas, sky-status, btn-locate, btn-night, btn-constellations, btn-now, info-panel, info-name, info-detail, info-pos, compass, datetime\n- style.css (css, 235 righe)\nCollegamenti fra file:\n  app.js --[usa #sky-canvas]--> index.html\n  app.js --[usa #sky-status]--> index.html\n  app.js --[usa #info-panel]--> index.html\n  app.js --[usa #info-name]--> index.html\n  app.js --[usa #info-detail]--> index.html\n  app.js --[usa #info-pos]--> index.html\n  app.js --[usa #compass]--> index.html\n  app.js --[usa #btn-locate]--> index.html\n  app.js --[usa #btn-night]--> index.html\n  app.js --[usa #btn-constellations]--> index.html\n  app.js --[usa #btn-now]--> index.html\n  app.js --[usa #datetime]--> index.html\n  index.html --[include]--> style.css\n  index.html --[include]--> app.js",
+      "value": "- app.js (js, 737 righe) -> funzioni: init, buildStars, buildConstellations, buildGrid, buildGround, buildSkybox, equatorialToVector3, julianDay, greenwichMeanSiderealTime, updateSky, onCanvasClick, selectStar | variabili: canvas, statusEl, infoPanel, infoName, infoDetail, infoPos, compassEl, btnLocate, btnNight, btnConstellations, btnNow, datetimeInput | usa id: sky-canvas, sky-status, info-panel, info-name, info-detail, info-pos, compass, btn-locate, btn-night, btn-constellations, btn-now, datetime\n- index.html (html, 63 righe) -> id: sky-canvas, map-container, map, map-title, btn-use-gps, btn-confirm-map, btn-close-map, sky-status, btn-locate, btn-map, btn-night, btn-constellations\n- style.css (css, 322 righe)\nCollegamenti fra file:\n  app.js --[usa #sky-canvas]--> index.html\n  app.js --[usa #sky-status]--> index.html\n  app.js --[usa #info-panel]--> index.html\n  app.js --[usa #info-name]--> index.html\n  app.js --[usa #info-detail]--> index.html\n  app.js --[usa #info-pos]--> index.html\n  app.js --[usa #compass]--> index.html\n  app.js --[usa #btn-locate]--> index.html\n  app.js --[usa #btn-night]--> index.html\n  app.js --[usa #btn-constellations]--> index.html\n  app.js --[usa #btn-now]--> index.html\n  app.js --[usa #datetime]--> index.html\n  app.js --[usa #btn-map]--> index.html\n  app.js --[usa #map-container]--> index.html\n  app.js --[usa #map]--> index.html\n  app.js --[usa #btn-use-gps]--> index.html\n  app.js --[usa #btn-confirm-map]--> index.html\n  app.js --[usa #btn-close-map]--> index.html\n  app.js --[usa #map-title]--> index.html\n  index.html --[include]--> style.css\n  index.html --[include]--> app.js",
       "tags": [
         "analisi",
         "mappa"
       ],
       "synapses": [],
-      "updatedAt": "2026-10-18T15:52:10.001Z"
+      "updatedAt": "2026-10-18T16:31:58.220Z"
     },
     {
       "id": "proj_code_style_css",
       "scope": "project",
       "type": "data",
       "label": "style.css",
-      "value": "[style.css] Fogli di stile CSS: 235 righe. Ultima modifica: 17:51:53",
+      "value": "[style.css] Fogli di stile CSS: 322 righe. Ultima modifica: 18:29:29",
       "tags": [
         "codice",
         "css",
@@ -227,14 +273,14 @@
         }
       ],
       "createdAt": "2026-10-11T13:05:02.906Z",
-      "updatedAt": "2026-10-18T15:51:53.854Z"
+      "updatedAt": "2026-10-18T16:29:29.692Z"
     },
     {
       "id": "proj_code_app_js",
       "scope": "project",
       "type": "data",
       "label": "app.js",
-      "value": "[app.js] Script JavaScript/TypeScript: 563 righe. Metodi (22): init, buildStars, buildConstellations, buildGrid, ang, equatorialToVector3, lst, ha, julianDay, greenwichMeanSiderealTime.... Riferimenti: three, three/addons/controls/OrbitControls.js. Ultima modifica: 17:51:53",
+      "value": "[app.js] Script JavaScript/TypeScript: 737 righe. Metodi (31): init, buildStars, buildConstellations, buildGrid, ang, buildGround, c, buildSkybox, t, equatorialToVector3.... Riferimenti: three, three/addons/controls/OrbitControls.js. Ultima modifica: 18:29:29",
       "tags": [
         "codice",
         "js",
@@ -249,14 +295,36 @@
         }
       ],
       "createdAt": "2026-10-11T13:05:32.847Z",
-      "updatedAt": "2026-10-18T15:51:53.854Z"
+      "updatedAt": "2026-10-18T16:29:29.691Z"
+    },
+    {
+      "id": "proj_code_ground_skybox_js",
+      "scope": "project",
+      "type": "data",
+      "label": "ground_skybox.js",
+      "value": "[ground_skybox.js] Script JavaScript/TypeScript: 61 righe. Metodi (4): buildGround, c, buildSkybox, t.",
+      "tags": [
+        "codice",
+        "js",
+        "progetto",
+        "funzioni"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_root",
+          "label": "script di",
+          "strength": 0.9
+        }
+      ],
+      "createdAt": "2026-10-18T16:17:40.398Z",
+      "updatedAt": "2026-10-18T16:17:40.398Z"
     },
     {
       "id": "mappa_app_js",
       "scope": "project",
       "type": "data",
       "label": "app.js",
-      "value": "js, 563 righe. Funzioni: init, buildStars, buildConstellations, buildGrid, equatorialToVector3, julianDay, greenwichMeanSiderealTime, updateSky, onCanvasClick, selectStar, deselectStar, getLocation, onWindowResize, onDateTimeChange, updateDateTimeInput. Variabili: canvas, statusEl, infoPanel, infoName, infoDetail, infoPos, compassEl, btnLocate, btnNight, btnConstellations, btnNow, datetimeInput, lat, lon, showNight. Id usati: sky-canvas, sky-status, info-panel, info-name, info-detail, info-pos, compass, btn-locate, btn-night, btn-constellations, btn-now, datetime",
+      "value": "js, 737 righe. Funzioni: init, buildStars, buildConstellations, buildGrid, buildGround, buildSkybox, equatorialToVector3, julianDay, greenwichMeanSiderealTime, updateSky, onCanvasClick, selectStar, deselectStar, getLocation, loadMapApi. Variabili: canvas, statusEl, infoPanel, infoName, infoDetail, infoPos, compassEl, btnLocate, btnNight, btnConstellations, btnNow, datetimeInput, btnMap, mapContainer, mapEl. Id usati: sky-canvas, sky-status, info-panel, info-name, info-detail, info-pos, compass, btn-locate, btn-night, btn-constellations, btn-now, datetime, btn-map, map-container, map",
       "tags": [
         "mappa-codice",
         "js"
@@ -321,16 +389,51 @@
           "targetId": "mappa_index_html",
           "label": "usa #datetime",
           "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-map",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #map-container",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #map",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-use-gps",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-confirm-map",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-close-map",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #map-title",
+          "strength": 0.8
         }
       ],
-      "updatedAt": "2026-10-18T15:52:10.003Z"
+      "updatedAt": "2026-10-18T16:31:58.222Z"
     },
     {
       "id": "mappa_index_html",
       "scope": "project",
       "type": "data",
       "label": "index.html",
-      "value": "html, 49 righe. Id dichiarati: sky-canvas, sky-status, btn-locate, btn-night, btn-constellations, btn-now, info-panel, info-name, info-detail, info-pos, compass, datetime",
+      "value": "html, 63 righe. Id dichiarati: sky-canvas, map-container, map, map-title, btn-use-gps, btn-confirm-map, btn-close-map, sky-status, btn-locate, btn-map, btn-night, btn-constellations, btn-now, info-panel, info-name",
       "tags": [
         "mappa-codice",
         "html"
@@ -347,20 +450,20 @@
           "strength": 0.8
         }
       ],
-      "updatedAt": "2026-10-18T15:52:10.003Z"
+      "updatedAt": "2026-10-18T16:31:58.222Z"
     },
     {
       "id": "mappa_style_css",
       "scope": "project",
       "type": "data",
       "label": "style.css",
-      "value": "css, 235 righe. Nessun simbolo di primo livello.",
+      "value": "css, 322 righe. Nessun simbolo di primo livello.",
       "tags": [
         "mappa-codice",
         "css"
       ],
       "synapses": [],
-      "updatedAt": "2026-10-18T15:52:10.003Z"
+      "updatedAt": "2026-10-18T16:31:58.222Z"
     }
   ]
 }
