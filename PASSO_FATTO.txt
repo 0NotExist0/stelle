@@ -1,0 +1,6 @@
+PASSO FATTO (PASSO 1 di 3): Individuati i punti da cambiare tramite Grep.
+- app.js: getRandomConstellation(), startCamera(), capturePhoto(), array constellations, resizeCanvas() (logica finta basata su fotocamera, non usabile di giorno)
+- index.html: camera-section, camera-video, overlay-canvas, pulsanti start-camera/capture-photo
+- style.css: stili video/canvas/overlay
+Soluzione proposta: sostituire fotocamera+riconoscimento finto con mappa stellare reale (geolocalizzazione + orario), usabile anche di giorno.
+In attesa di scelta dell'utente sull'approccio tecnico per la mappa stellare (blocco adam-envelope emesso).

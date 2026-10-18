@@ -3,32 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stelle nel Cielo - Costellazioni</title>
+    <title>Mappa Stellare - Cielo in Tempo Reale</title>
     <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🌟 Stelle nel Cielo</h1>
-            <p>Punta la fotocamera al cielo per scoprire la costellazione</p>
+    <div class="sky-container">
+        <canvas id="sky-canvas"></canvas>
+
+        <header class="sky-header">
+            <h1>🌌 Mappa Stellare</h1>
+            <div id="sky-status">Calcolo posizione...</div>
         </header>
 
-        <main>
-            <section id="camera-section">
-                <video id="camera-video" autoplay playsinline></video>
-                <canvas id="overlay-canvas"></canvas>
-                <div id="constellation-info" class="hidden">
-                    <h2 id="constellation-name">--</h2>
-                    <p id="constellation-description">--</p>
-                </div>
-            </section>
+        <div class="controls">
+            <button id="btn-locate" class="btn">📍 La mia posizione</button>
+            <button id="btn-night" class="btn">🌙 Notturna</button>
+            <button id="btn-constellations" class="btn active">✨ Costellazioni</button>
+            <button id="btn-now" class="btn">⏱ Ora attuale</button>
+        </div>
 
-            <section id="controls">
-                <button id="start-camera" class="btn">Avvia Fotocamera</button>
-                <button id="capture-photo" class="btn hidden">Scatta Foto</button>
-            </section>
-        </main>
+        <div id="info-panel" class="info-panel hidden">
+            <h2 id="info-name">--</h2>
+            <p id="info-detail">--</p>
+            <p id="info-pos">--</p>
+        </div>
+
+        <div id="compass" class="compass">N</div>
+
+        <div class="time-bar">
+            <label for="datetime">Data / Ora</label>
+            <input type="datetime-local" id="datetime">
+        </div>
     </div>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

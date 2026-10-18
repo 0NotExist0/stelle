@@ -1,8 +1,80 @@
 {
   "projectName": "sitoStelle",
   "projectPath": "C:\\Users\\pietr\\OneDrive\\Desktop\\sitoStelle",
-  "updatedAt": "2026-10-11T13:25:10.760Z",
+  "updatedAt": "2026-10-18T15:52:10.003Z",
   "nodes": [
+    {
+      "id": "proj_step_1792338713854",
+      "scope": "project",
+      "type": "step",
+      "label": "Passo: Eseguo subito il passo 1: modifico `inde",
+      "value": "Eseguito: Eseguo subito il passo 1: modifico `index.html` per passare dal canvas 2D all'ambiente Three.js con import map e overlay UI. Il file esiste già, quindi uso `Edit` (non Write da zero).. File coinvolti: index.html, style.css, app.js, app.js, index.html, style.css",
+      "tags": [
+        "passaggio",
+        "sviluppo",
+        "progresso"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_code_index_html",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_style_css",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_app_js",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_app_js",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_index_html",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_code_style_css",
+          "label": "ha modificato",
+          "strength": 0.85
+        },
+        {
+          "targetId": "proj_node_root",
+          "label": "avanzamento",
+          "strength": 0.7
+        }
+      ],
+      "createdAt": "2026-10-18T15:51:53.854Z",
+      "updatedAt": "2026-10-18T15:51:53.854Z"
+    },
+    {
+      "id": "proj_step_1792154446453",
+      "scope": "project",
+      "type": "step",
+      "label": "Passo: Ho letto tutti e tre i file del progetto",
+      "value": "Eseguito: Ho letto tutti e tre i file del progetto. Ora faccio l'esplorazione mirata (Grep) per individuare esattamente i punti da cambiare — la logica \"finta\" attuale — prima di decidere come intervenire.. File coinvolti: PASSO_FATTO.txt, PASSO_FATTO.txt",
+      "tags": [
+        "passaggio",
+        "sviluppo",
+        "progresso"
+      ],
+      "synapses": [
+        {
+          "targetId": "proj_node_root",
+          "label": "avanzamento",
+          "strength": 0.7
+        }
+      ],
+      "createdAt": "2026-10-16T12:40:46.453Z",
+      "updatedAt": "2026-10-16T12:40:46.453Z"
+    },
     {
       "id": "proj_step_1791723951183",
       "scope": "project",
@@ -107,7 +179,7 @@
       "scope": "project",
       "type": "data",
       "label": "index.html",
-      "value": "[index.html] Interfaccia HTML: 34 righe. Campi/ID: camera-section, camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, controls, start-camera. Ultima modifica: 15:05:51",
+      "value": "[index.html] Interfaccia HTML: 49 righe. Campi/ID: sky-canvas, sky-status, btn-locate, btn-night, btn-constellations, btn-now, info-panel, info-name. Ultima modifica: 17:51:53",
       "tags": [
         "codice",
         "html",
@@ -121,27 +193,27 @@
         }
       ],
       "createdAt": "2026-10-11T13:04:20.535Z",
-      "updatedAt": "2026-10-11T13:05:51.182Z"
+      "updatedAt": "2026-10-18T15:51:53.854Z"
     },
     {
       "id": "scan_mappa_del_codice",
       "scope": "project",
       "type": "data",
       "label": "Mappa del codice",
-      "value": "- app.js (js, 59 righe) -> funzioni: getRandomConstellation, resizeCanvas, startCamera, capturePhoto | variabili: video, canvas, ctx, constellationInfo, constellationName, constellationDescription, startCameraBtn, capturePhotoBtn, stream, constellations | usa id: camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, start-camera, capture-photo\n- index.html (html, 34 righe) -> id: camera-section, camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, controls, start-camera, capture-photo\n- style.css (css, 116 righe)\nCollegamenti fra file:\n  app.js --[usa #camera-video]--> index.html\n  app.js --[usa #overlay-canvas]--> index.html\n  app.js --[usa #constellation-info]--> index.html\n  app.js --[usa #constellation-name]--> index.html\n  app.js --[usa #constellation-description]--> index.html\n  app.js --[usa #start-camera]--> index.html\n  app.js --[usa #capture-photo]--> index.html\n  index.html --[include]--> style.css\n  index.html --[include]--> app.js",
+      "value": "- app.js (js, 563 righe) -> funzioni: init, buildStars, buildConstellations, buildGrid, equatorialToVector3, julianDay, greenwichMeanSiderealTime, updateSky, onCanvasClick, selectStar, deselectStar, getLocation | variabili: canvas, statusEl, infoPanel, infoName, infoDetail, infoPos, compassEl, btnLocate, btnNight, btnConstellations, btnNow, datetimeInput | usa id: sky-canvas, sky-status, info-panel, info-name, info-detail, info-pos, compass, btn-locate, btn-night, btn-constellations, btn-now, datetime\n- index.html (html, 49 righe) -> id: sky-canvas, sky-status, btn-locate, btn-night, btn-constellations, btn-now, info-panel, info-name, info-detail, info-pos, compass, datetime\n- style.css (css, 235 righe)\nCollegamenti fra file:\n  app.js --[usa #sky-canvas]--> index.html\n  app.js --[usa #sky-status]--> index.html\n  app.js --[usa #info-panel]--> index.html\n  app.js --[usa #info-name]--> index.html\n  app.js --[usa #info-detail]--> index.html\n  app.js --[usa #info-pos]--> index.html\n  app.js --[usa #compass]--> index.html\n  app.js --[usa #btn-locate]--> index.html\n  app.js --[usa #btn-night]--> index.html\n  app.js --[usa #btn-constellations]--> index.html\n  app.js --[usa #btn-now]--> index.html\n  app.js --[usa #datetime]--> index.html\n  index.html --[include]--> style.css\n  index.html --[include]--> app.js",
       "tags": [
         "analisi",
         "mappa"
       ],
       "synapses": [],
-      "updatedAt": "2026-10-11T13:25:10.758Z"
+      "updatedAt": "2026-10-18T15:52:10.001Z"
     },
     {
       "id": "proj_code_style_css",
       "scope": "project",
       "type": "data",
       "label": "style.css",
-      "value": "[style.css] Fogli di stile CSS: 116 righe. Ultima modifica: 15:05:51",
+      "value": "[style.css] Fogli di stile CSS: 235 righe. Ultima modifica: 17:51:53",
       "tags": [
         "codice",
         "css",
@@ -155,14 +227,14 @@
         }
       ],
       "createdAt": "2026-10-11T13:05:02.906Z",
-      "updatedAt": "2026-10-11T13:05:51.183Z"
+      "updatedAt": "2026-10-18T15:51:53.854Z"
     },
     {
       "id": "proj_code_app_js",
       "scope": "project",
       "type": "data",
       "label": "app.js",
-      "value": "[app.js] Script JavaScript/TypeScript: 59 righe. Metodi (4): getRandomConstellation, resizeCanvas, startCamera, capturePhoto. Ultima modifica: 15:05:51",
+      "value": "[app.js] Script JavaScript/TypeScript: 563 righe. Metodi (22): init, buildStars, buildConstellations, buildGrid, ang, equatorialToVector3, lst, ha, julianDay, greenwichMeanSiderealTime.... Riferimenti: three, three/addons/controls/OrbitControls.js. Ultima modifica: 17:51:53",
       "tags": [
         "codice",
         "js",
@@ -177,14 +249,14 @@
         }
       ],
       "createdAt": "2026-10-11T13:05:32.847Z",
-      "updatedAt": "2026-10-11T13:05:51.183Z"
+      "updatedAt": "2026-10-18T15:51:53.854Z"
     },
     {
       "id": "mappa_app_js",
       "scope": "project",
       "type": "data",
       "label": "app.js",
-      "value": "js, 59 righe. Funzioni: getRandomConstellation, resizeCanvas, startCamera, capturePhoto. Variabili: video, canvas, ctx, constellationInfo, constellationName, constellationDescription, startCameraBtn, capturePhotoBtn, stream, constellations. Id usati: camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, start-camera, capture-photo",
+      "value": "js, 563 righe. Funzioni: init, buildStars, buildConstellations, buildGrid, equatorialToVector3, julianDay, greenwichMeanSiderealTime, updateSky, onCanvasClick, selectStar, deselectStar, getLocation, onWindowResize, onDateTimeChange, updateDateTimeInput. Variabili: canvas, statusEl, infoPanel, infoName, infoDetail, infoPos, compassEl, btnLocate, btnNight, btnConstellations, btnNow, datetimeInput, lat, lon, showNight. Id usati: sky-canvas, sky-status, info-panel, info-name, info-detail, info-pos, compass, btn-locate, btn-night, btn-constellations, btn-now, datetime",
       "tags": [
         "mappa-codice",
         "js"
@@ -192,48 +264,73 @@
       "synapses": [
         {
           "targetId": "mappa_index_html",
-          "label": "usa #camera-video",
+          "label": "usa #sky-canvas",
           "strength": 0.8
         },
         {
           "targetId": "mappa_index_html",
-          "label": "usa #overlay-canvas",
+          "label": "usa #sky-status",
           "strength": 0.8
         },
         {
           "targetId": "mappa_index_html",
-          "label": "usa #constellation-info",
+          "label": "usa #info-panel",
           "strength": 0.8
         },
         {
           "targetId": "mappa_index_html",
-          "label": "usa #constellation-name",
+          "label": "usa #info-name",
           "strength": 0.8
         },
         {
           "targetId": "mappa_index_html",
-          "label": "usa #constellation-description",
+          "label": "usa #info-detail",
           "strength": 0.8
         },
         {
           "targetId": "mappa_index_html",
-          "label": "usa #start-camera",
+          "label": "usa #info-pos",
           "strength": 0.8
         },
         {
           "targetId": "mappa_index_html",
-          "label": "usa #capture-photo",
+          "label": "usa #compass",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-locate",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-night",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-constellations",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #btn-now",
+          "strength": 0.8
+        },
+        {
+          "targetId": "mappa_index_html",
+          "label": "usa #datetime",
           "strength": 0.8
         }
       ],
-      "updatedAt": "2026-10-11T13:25:10.760Z"
+      "updatedAt": "2026-10-18T15:52:10.003Z"
     },
     {
       "id": "mappa_index_html",
       "scope": "project",
       "type": "data",
       "label": "index.html",
-      "value": "html, 34 righe. Id dichiarati: camera-section, camera-video, overlay-canvas, constellation-info, constellation-name, constellation-description, controls, start-camera, capture-photo",
+      "value": "html, 49 righe. Id dichiarati: sky-canvas, sky-status, btn-locate, btn-night, btn-constellations, btn-now, info-panel, info-name, info-detail, info-pos, compass, datetime",
       "tags": [
         "mappa-codice",
         "html"
@@ -250,20 +347,20 @@
           "strength": 0.8
         }
       ],
-      "updatedAt": "2026-10-11T13:25:10.760Z"
+      "updatedAt": "2026-10-18T15:52:10.003Z"
     },
     {
       "id": "mappa_style_css",
       "scope": "project",
       "type": "data",
       "label": "style.css",
-      "value": "css, 116 righe. Nessun simbolo di primo livello.",
+      "value": "css, 235 righe. Nessun simbolo di primo livello.",
       "tags": [
         "mappa-codice",
         "css"
       ],
       "synapses": [],
-      "updatedAt": "2026-10-11T13:25:10.760Z"
+      "updatedAt": "2026-10-18T15:52:10.003Z"
     }
   ]
 }
