@@ -602,7 +602,7 @@ function initMap() {
     map = new google.maps.Map(mapEl, {
         center,
         zoom: 10,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
         styles: [
             { elementType: 'geometry', stylers: [{ color: '#1a1a2e' }] },
             { elementType: 'labels.text.fill', stylers: [{ color: '#9aa0b2' }] },
